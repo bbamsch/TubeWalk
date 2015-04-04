@@ -1,6 +1,5 @@
-script(type="text/javascript", src="https://apis.google.com/js/client.js?onload=OnLoadCallback&key=***REMOVED***")
-script(type="text/javascript").
-	// Asdf
+script(type="text/javascript",src="/scripts/auth.js")
+script(type="text/javascript", src="https://apis.google.com/js/client.js?onload=googleApiClientReady&key=***REMOVED***")
 
 div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
 	div.container
@@ -10,10 +9,10 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
 				span.icon-bar
 				span.icon-bar
 			a.navbar-brand(href="#")
-				| Program Name
+				| TubeWalk
 		div.collapse.navbar-collapse
 			ul.nav.navbar-nav
 				li.active
-					a(href="/") Home
+					a(href="#") Home
 				li
 					a(href="#channels") Channels
