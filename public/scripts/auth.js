@@ -1,14 +1,32 @@
- var OAUTH2_CLIENT_ID = '***REMOVED***';
+ 	var OAUTH2_CLIENT_ID = '***REMOVED***';
         var OAUTH2_SCOPES = [
                 'https://www.googleapis.com/auth/youtube'
         ];
+	var API_KEY = '***REMOVED***';
+	var ASPECT = 16 / 9;
+
+	var videoPerList = 50;
+	var loadFactor = 0.25;
+	var numwatched = videoPerList;
+
+	var displays = [];
+
+	var videoList = [];
+	var unwatched = [];
 
         googleApiClientReady = function() {
-                console.log("CLIENT READY");
+		initDisplays();
                 gapi.auth.init(function() {
                         window.setTimeout(checkAuth, 1);
                 });
         }
+
+	function initDisplays() {
+		displays[0] = $("#disp1");
+		displays[1] = $("#disp2");
+		displays[2] = $("#disp3");
+		displays[3] = $("#disp4");
+	}
 
         function checkAuth() {
                 gapi.auth.authorize({
@@ -46,5 +64,64 @@
         }
 
         function handleAPILoaded() {
-                console.log("FUCKIN DONE");
-        }
+        	loadNewVideos();
+	}
+
+	function loadNewVideos() {
+		$.get("https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=" + videoPerList + "&key=" + API_KEY,
+			processVideos);
+	}
+
+	function processVideos(data) {
+		var vids = data["items"];
+		//var newhtml = "<ul>";
+		unwatched = [];
+		for(var i = 0; i < vids.length; i++) {
+			var vid = vids[i];
+			//newhtml += "<li><a href='http://www.youtube.com/watch?v=" + vid.id.videoId + "'>" + vid.snippet.title + "</a></li>";
+			videoList[i] = vid.id.videoId;
+			unwatched[i] = i;
+		}
+		numwatched = 0;
+		console.log(videoList);
+		console.log(unwatched);
+		//newhtml += "</ul>";
+		//$("#thestuff").html(newhtml);
+		displayFour();
+	}
+
+	function refresh() {
+		if(numwatched <= loadFactor * videoPerList) {
+			// Get New List
+			loadNewVideos();
+		} else {
+			// Display 4 New
+			displayFour();
+		}
+	}
+
+	function displayFour() {
+		for(var i = 0; i < 4; i++) {
+			var index = Math.floor(Math.random() * unwatched.length);
+			var videoIndex = unwatched.splice(index, 1);
+			displays[i].html(embedHTML(i, videoList[videoIndex]));
+		}
+		resizeVids();
+	}
+
+	function embedHTML(displayindex, video_id) {
+		//return "<a href='http://www.youtube.com/watch?v=" + video_id + "'>" + video_id + "</a>";
+		var html = "<object id='video"+displayindex+"' style='width:100%;height:100%;width:100%;height:100%; float:left; clear: both; margin: auto;' data='http://www.youtube.com/v/" + video_id + "?autoplay=1&controls=0&enablejsapi=1&showinfo=0'></object>";
+ 
+		return html;
+	}
+
+	$(window).resize(resizeVids);
+
+	function resizeVids() {
+		for(var i = 0; i < 4; i++) {
+			var video = $("#video" + i);
+			var wid = video.width();
+			video.height(wid / ASPECT);
+		}
+	}
