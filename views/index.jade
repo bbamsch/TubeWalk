@@ -3,8 +3,6 @@ extends layout
 
 block content
 	div.container
-		script(type="text/javascript").
-			swfobject.embedSWF("http://www.youtube.com/v/loab4A_SqoQ?version=3&enablejsapi=1&playerapiid=player1", "player1", "300", "200", "9.0.0");
 		div.pre-auth
 			p
 				h1 TubeWalk
@@ -14,15 +12,17 @@ block content
 				button.btn.btn-primary#login-link.
 					Click Here To Get Started!
 		div.post-auth(style="display:none")
-			div.row
-				div.videobox#disp1
-					div#player1
+			div.fixthiscrapnow
+				div.span6
+					div#disp1
 						p Display 1
-				div.videobox#disp2
-					div#player2
+				div.span6
+					div#disp2
 						p Display 2
-			div.row
-				div.videobox#disp3
-					p Display 3
-				div.videobox#disp4
-					p Display 4
+			div.fixthiscrapnow
+				div.span6
+					div#disp3
+						p Display 3
+				div.span6
+					div#disp4
+						p Display 4

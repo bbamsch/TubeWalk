@@ -1,5 +1,8 @@
-.videobox {
-	width:50%;
-	height:125%;
-	float:left;
+.fixthiscrapnow {
 }
+
+#disp1, #disp2, #disp3, #disp4 {
+	float:left;
+	width:50%;
+}
+
