@@ -209,3 +209,11 @@
 			players[i].mute();
 		}
 	}
+
+	$(document).ready(function() {
+		$("#searchbar").submit(function(e) {
+			e.preventDefault();
+			loadNewVideosQuery($("#searchinput").val());
+			return false;
+		});
+	});

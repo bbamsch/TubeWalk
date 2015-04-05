@@ -1,6 +1,6 @@
+
 script(type="text/javascript",src="/scripts/auth.js")
 script(type="text/javascript", src="https://apis.google.com/js/client.js?onload=googleApiClientReady&key=***REMOVED***")
-script(type="text/javascript", src="scripts/swfobject/swfobject.js")
 
 div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
 	div.container
@@ -17,3 +17,8 @@ div.navbar.navbar-inverse.navbar-fixed-top(role='navigation')
 					a(href="#") Home
 				li
 					a(href="#channels") Channels
+			form.navbar-form.navbar-right#searchbar(role='search',_lpchecked='1')
+				div.form-group
+					input.form-control#searchinput(type='text',placeholder='Search')
+				button.btn.btn-default(type='submit') Submit
+

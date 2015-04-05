@@ -1,4 +1,13 @@
-.fixthiscrapnow {
+body {
+	overflow:hidden; !important
+	background-color:#000000; !important
+}
+
+div.container.contentbg {
+	background-image: url("/images/bg3.png");
+	background-repeat: repeat;
+	height:100%;
+	min-height:2000px;
 }
 
 #disp1, #disp2, #disp3, #disp4 {
