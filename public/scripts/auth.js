@@ -14,6 +14,11 @@
 	var videoList = [];
 	var unwatched = [];
 
+	var tag = document.createElement('script');
+	tag.src = "http://www.youtube.com/player_api";
+	var firstScriptTag = document.getElementsByTagName('script')[0];
+	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
         googleApiClientReady = function() {
 		initDisplays();
                 gapi.auth.init(function() {
@@ -21,11 +26,32 @@
                 });
         }
 
+	var players = []
 	function initDisplays() {
 		displays[0] = $("#disp1");
 		displays[1] = $("#disp2");
 		displays[2] = $("#disp3");
 		displays[3] = $("#disp4");
+	}
+
+	function onYoutubePlayerAPIReady() {
+		players[0] = new YT.Player('player1', {
+			height: '390',
+			width: '640',
+			videoId: 'M7lc1UVf-VE',
+			events: {
+				'onReady': onPlayerReady,
+				'onStateChange': onPlayerStateChange
+			}
+		});
+	}
+
+	function onPlayerReady(event) {
+		alert("Ready");
+	}
+
+	function onPlayerStateChange(event) {
+		alert("State Change");
 	}
 
         function checkAuth() {
@@ -104,14 +130,14 @@
 		for(var i = 0; i < 4; i++) {
 			var index = Math.floor(Math.random() * unwatched.length);
 			var videoIndex = unwatched.splice(index, 1);
-			displays[i].html(embedHTML(i, videoList[videoIndex]));
+			//displays[i].html(embedHTML(i, videoList[videoIndex]));
 		}
 		resizeVids();
 	}
 
 	function embedHTML(displayindex, video_id) {
 		//return "<a href='http://www.youtube.com/watch?v=" + video_id + "'>" + video_id + "</a>";
-		var html = "<object id='video"+displayindex+"' style='width:100%;height:100%;width:100%;height:100%; float:left; clear: both; margin: auto;' data='http://www.youtube.com/v/" + video_id + "?autoplay=1&controls=0&enablejsapi=1&showinfo=0'></object>";
+		var html = "<object id='video"+displayindex+"' style='width:100%;height:100%;width:100%;height:100%; float:left; clear: both; margin: auto;' data='http://www.youtube.com/v/" + video_id + "?autoplay=1&controls=1&enablejsapi=1&playerapiid=player" + displayindex + "&showinfo=1'></object>";
  
 		return html;
 	}
@@ -123,5 +149,12 @@
 			var video = $("#video" + i);
 			var wid = video.width();
 			video.height(wid / ASPECT);
+		}
+	}
+
+	function muteAll() {
+		for(var i = 0; i < 4; i++) {
+			var video = $("#video" + i);
+			video.prop('muted', true);
 		}
 	}
