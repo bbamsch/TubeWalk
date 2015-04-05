@@ -34,16 +34,9 @@
 		displays[3] = $("#disp4");
 	}
 
-	function onYoutubePlayerAPIReady() {
-		players[0] = new YT.Player('player1', {
-			height: '390',
-			width: '640',
-			videoId: 'M7lc1UVf-VE',
-			events: {
-				'onReady': onPlayerReady,
-				'onStateChange': onPlayerStateChange
-			}
-		});
+	function onYoutubePlayerAPIReady(player_id) {
+		console.log(player_id);
+		players[0] = document.getElementById("player1");
 	}
 
 	function onPlayerReady(event) {

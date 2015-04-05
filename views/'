@@ -1,10 +1,10 @@
 extends layout
 
+script(type="text/javascript").
+	swfobject.embedSWF("http://www.youtube.com/v/a8c5wmeOl9o?version=3&enablejsapi=1", "player1", "300", "200", "9.0.0");
 
 block content
 	div.container
-		script(type="text/javascript").
-			swfobject.embedSWF("http://www.youtube.com/v/loab4A_SqoQ?version=3&enablejsapi=1&playerapiid=player1", "player1", "300", "200", "9.0.0");
 		div.pre-auth
 			p
 				h1 TubeWalk
@@ -16,10 +16,10 @@ block content
 		div.post-auth(style="display:none")
 			div.row
 				div.videobox#disp1
-					div#player1
+					div.player1
 						p Display 1
 				div.videobox#disp2
-					div#player2
+					div.player2
 						p Display 2
 			div.row
 				div.videobox#disp3
