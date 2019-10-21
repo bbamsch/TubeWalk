@@ -1,23 +1,85 @@
-extends layout
+doctype html
+html(lang='en')
+  head
+    title='TubeWalk - A random walk through the depths of YouTube'
 
+    meta(
+      charset='utf-8')
+    meta(
+      name='description',
+      content='A random walk through the depths of YouTube')
+    meta(
+      name='keywords',
+      content='YouTube,TubeWalk')
+    meta(
+      name='viewport'
+      content='width=device-width, initial-scale=1, shrink-to-fit=no')
 
-block content
-	div.container.contentbg
-		div.post-auth.add-top-margin
-			div.fixthiscrapnow
-				div.span6
-					div#disp1
-						p Display 1
-				div.span6
-					div#disp2
-						p Display 2
-			div.fixthiscrapnow
-				div.span6
-					div#disp3
-						p Display 3
-				div.span6
-					div#disp4
-						p Display 4
-			div.fixthiscrapnow
-				center
-					button.btn.btn-default.add-top-margin(onclick="refresh()",style="width:100%") Meh...
+    // Bootstrap CSS
+    link(
+      rel='stylesheet',
+      href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
+      integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T',
+      crossorigin='anonymous')
+    // Custom CSS
+    link(
+      rel='stylesheet',
+      href='/css/style.css')
+
+  body
+    nav.navbar.navbar-expand-md.navbar-light.bg-light(role='navigation')
+      a.navbar-brand(href='#') TubeWalk
+      button.navbar-toggler(type='button', data-toggle='collapse', data-target='#navbarNavDropdown')
+        span.navbar-toggler-icon
+      
+      div.collapse.navbar-collapse#navbarNavDropdown
+        ul.navbar-nav.mr-auto
+          li.nav-item.dropdown
+            a.nav-link.dropdown-toggle#navbarCategories(href='#', role='button', data-toggle='dropdown') Categories 
+            div.dropdown-menu#navDropdownCategories
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(15)") Animals
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(22)") Entertainment
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(44)") Movie Trailers
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(10)") Music Videos
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(28)") Science
+              a.dropdown-item(href='#', onclick="playNewVideosByCategory(17)") Sports
+        form.form-inline.my-2.my-lg-0
+          input.form-control.mr-sm-2#search-query(type='search', placeholder='Search')
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit', onclick='playNewVideosByQuery(document.getElementById("search-query").value)') Search
+
+    div.jumbotron.align-items-center
+      div.container#players
+        div.row.no-gutters
+          div.col-6
+            div.player#player0
+              p Display 0
+          div.col-6
+            div.player#player1
+              p Display 1
+        div.row.no-gutters
+          div.col-6
+            div.player#player2
+              p Display 2
+          div.col-6
+            div.player#player3
+              p Display 3
+        div.row.no-gutters
+          div.col-12
+            button.btn.btn-primary#button-meh(onclick="playNewVideos()") Meh...
+
+  // JQuery
+  script(
+    src='https://code.jquery.com/jquery-3.4.1.min.js',
+    integrity='sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=',
+    crossorigin='anonymous')
+  // Bootstrap JS
+  script(
+    src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+    integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM',
+    crossorigin='anonymous')
+  // YouTube Player API
+  script(
+    src='http://www.youtube.com/player_api')
+  // Application
+  script(
+    src='/js/app.js')
