@@ -16,7 +16,7 @@ var app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
-app.set('view engine', 'jade');
+app.set('view engine', 'pug');
 app.set('api_key', process.env.API_KEY);
 app.use(favicon(__dirname + '/public/images/favicon.png'));
 app.use(logger('dev'));
