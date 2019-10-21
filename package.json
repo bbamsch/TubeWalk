@@ -11,8 +11,7 @@
     "method-override": "*"
   },
   "engines": {
-    "node": "0.10.32",
-    "npm": "1.4.x"
+    "node": "10.x.x"
   },
   "description": "Node.js Bootstrap Starter Template\r ===",
   "main": "app.js",
@@ -29,5 +28,6 @@
   "bugs": {
     "url": "https://github.com/bbamsch/TubeWalk/issues"
   },
-  "homepage": "https://github.com/bbamsch/TubeWalk#readme"
+  "homepage": "https://github.com/bbamsch/TubeWalk#readme",
+  "devDependencies": {}
 }
