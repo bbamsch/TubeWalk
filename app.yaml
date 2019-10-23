@@ -13,6 +13,9 @@
 
 # [START gae_quickstart_yaml]
 runtime: nodejs10
+handlers:
+- url: /static
+  static_dir: public
 env_variables:
   API_KEY: ""
 # [END gae_quickstart_yaml]

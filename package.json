@@ -5,7 +5,6 @@
     "express": "*",
     "pug": "*",
     "stylus": "*",
-    "serve-favicon": "*",
     "morgan": "*",
     "body-parser": "*",
     "method-override": "*"
