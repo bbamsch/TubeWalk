@@ -15,5 +15,5 @@
 runtime: nodejs10
 handlers:
 - url: /static
-  static_dir: public
+  static_dir: static
 # [END gae_quickstart_yaml]

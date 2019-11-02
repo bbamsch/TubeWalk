@@ -2,21 +2,17 @@
   "name": "tubewalk",
   "version": "0.0.1",
   "dependencies": {
-    "express": "*",
-    "pug": "*",
-    "stylus": "*",
-    "morgan": "*",
-    "body-parser": "*",
-    "method-override": "*"
+    "express": "^4.17.1",
+    "pug": "^2.0.4"
   },
   "engines": {
     "node": "10.x.x"
   },
-  "description": "Node.js Bootstrap Starter Template\r ===",
+  "description": "TubeWalk - A random walk through the depths of YouTube",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "NODE_ENV=development node app.js",
+    "pack": "gulp"
   },
   "repository": {
     "type": "git",

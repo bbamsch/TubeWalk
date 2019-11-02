@@ -2,8 +2,7 @@ if (API_KEY == undefined || API_KEY == '') {
   alert("API_KEY not configured. App will not work.");
 }
 
-var ASPECT = 16 / 9;
-
+const ASPECT = 16 / 9;
 const MAX_RESULTS = 50;
 const REFILL_THRESHOLD = 20;
 

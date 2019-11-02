@@ -6,10 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , http = require('http')
-  , path = require('path')
-  , bodyParser = require('body-parser')
-  , logger = require('morgan')
-  , methodOverride = require('method-override');
+  , path = require('path');
 
 var app = express();
 
@@ -17,14 +14,9 @@ app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.set('api_key', process.env.API_KEY);
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(methodOverride('_method'));
-app.use(require('stylus').middleware(__dirname + '/public'));
-app.use('/static', express.static('public'));
 
 if (app.get('env') == 'development') {
-	app.locals.pretty = true;
+  app.use('/static', express.static('static'));
 }
 
 app.get('/', routes.index);
