@@ -87,7 +87,7 @@ const COMMON_QUERY_PARAMS = {
 var fetchNextVideos = () => {}; // Do nothing
 
 function fetchNewVideos(params = {}) {
-  const query_params = Object.assign(params, COMMON_QUERY_PARAMS);
+  const query_params = Object.assign({}, COMMON_QUERY_PARAMS, params);
   const url = 'https://www.googleapis.com/youtube/v3/search?' + $.param(query_params);
 
   // Check to see if we are already fetching videos
