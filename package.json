@@ -2,6 +2,7 @@
   "name": "tubewalk",
   "version": "0.0.1",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "pug": "^2.0.4"
   },
@@ -11,8 +12,8 @@
   "description": "TubeWalk - A random walk through the depths of YouTube",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development node app.js",
-    "pack": "gulp"
+    "start": "node app.js",
+    "config": "gulp config"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "url": "https://github.com/bbamsch/TubeWalk/issues"
   },
   "homepage": "https://github.com/bbamsch/TubeWalk#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "update-dotenv": "^1.1.1"
+  }
 }
