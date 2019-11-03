@@ -1,14 +1,13 @@
 steps:
 - name: 'node:10-alpine'
-  entrypoint: npm
+  entrypoint: 'npm'
   args: ['install']
 - name: 'node:10-alpine'
   entrypoint: npm
   args: ['run', 'dist']
   env:
+  - 'API_KEY=$_API_KEY'
   - 'NODE_ENV=production'
 - name: 'gcr.io/cloud-builders/gcloud'
   args: ['app', 'deploy']
-  env:
-  - 'API_KEY=$_API_KEY'
 timeout: '1600s'

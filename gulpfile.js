@@ -7,6 +7,7 @@ const terser = require('gulp-terser');
 const stylus = require('gulp-stylus');
 const livereload = require('gulp-livereload');
 const sourcemaps = devBuild ? require('gulp-sourcemaps') : null;
+const updateDotenv = require('update-dotenv');
 
 const js = () => {
   return gulp.src('src/js/**/*.js')
@@ -31,6 +32,13 @@ const static = () => {
     .pipe(gulp.dest('dist/'));
 }
 
+const dotenv = (done) => {
+  updateDotenv({
+    API_KEY: process.env.API_KEY,
+  });
+  done();
+}
+
 const serve = () => {
   livereload.listen();
   const server = gls('app.js', undefined, false);
@@ -50,9 +58,13 @@ const distClean = (done) => {
 
 const dist = gulp.series(static, gulp.parallel(js, css));
 
+const actions = {
+  dist: gulp.series(distClean, dist, dotenv),
+  serve: gulp.series(distClean, dist, dotenv, watch, serve),
+}
+
 module.exports = {
-  default: gulp.series(distClean, dist),
-  dist: gulp.series(distClean, dist),
-  serve: gulp.series(distClean, dist, watch, serve),
-  watch: gulp.series(distClean, dist, watch),
+  default: actions.dist,
+  dist: actions.dist,
+  serve: actions.serve,
 }
