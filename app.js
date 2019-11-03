@@ -3,19 +3,22 @@
  * Module dependencies.
  */
 
-var express = require('express')
+const
+    express = require('express')
   , routes = require('./routes')
-  , http = require('http')
-  , path = require('path');
+  , http = require('http');
 
-var app = express();
+const app = express();
 
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'pug');
 app.set('api_key', process.env.API_KEY);
 
-if (app.get('env') == 'development') {
+// Only allow Express to serve static files in development mode
+if (app.get('env') === 'development') {
+  app.use(require('connect-livereload')());
+  app.use('/static', express.static('dist'));
   app.use('/static', express.static('static'));
 }
 

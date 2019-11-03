@@ -11,8 +11,10 @@
   "description": "TubeWalk - A random walk through the depths of YouTube",
   "main": "app.js",
   "scripts": {
-    "start": "NODE_ENV=development node app.js",
-    "pack": "gulp"
+    "start": "node app.js",
+    "devserver": "gulp serve",
+    "watch": "gulp watch",
+    "dist": "gulp dist"
   },
   "repository": {
     "type": "git",
@@ -24,5 +26,15 @@
     "url": "https://github.com/bbamsch/TubeWalk/issues"
   },
   "homepage": "https://github.com/bbamsch/TubeWalk#readme",
-  "devDependencies": {}
+  "devDependencies": {
+    "connect-livereload": "^0.6.1",
+    "gulp": "^4.0.2",
+    "gulp-clean": "^0.4.0",
+    "gulp-live-server": "0.0.31",
+    "gulp-livereload": "^4.0.2",
+    "gulp-noop": "^1.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-stylus": "^2.7.0",
+    "gulp-terser": "^1.2.0"
+  }
 }
