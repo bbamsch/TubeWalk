@@ -45,7 +45,7 @@ html(lang='en')
               a.dropdown-item(href='#', onclick="playNewVideosByCategory(17)") Sports
         form.form-inline.my-2.my-lg-0
           input.form-control.mr-sm-2#search-query(type='search', placeholder='Search')
-          button.btn.btn-outline-success.my-2.my-sm-0(type='submit', onclick='playNewVideosByQuery(document.getElementById("search-query").value)') Search
+          button.btn.btn-outline-success.my-2.my-sm-0(type='submit', onclick='playNewVideosByQuery(document.getElementById("search-query").value); return false;') Search
 
     div.jumbotron.align-items-center
       div.container#players
